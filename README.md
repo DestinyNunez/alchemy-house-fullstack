@@ -1,7 +1,9 @@
-## Installation
+# Alchemy House Movement Tracker
 
-1. Clone repo
-2. run `npm install`
+![Screen Shot 2022-05-30 at 10 04 27 PM](https://user-images.githubusercontent.com/88361309/171079726-94d1219c-5262-4a20-8d48-f983a633f376.png)
+
+
+
 
 ## Usage
 

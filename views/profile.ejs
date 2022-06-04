@@ -16,7 +16,7 @@
 </head>
 
 <body>
-  <div class="container">
+  <!-- <div class="container"> -->
 
     <!-- <div class="page-header text-center"> -->
 
@@ -26,42 +26,84 @@
       <a href="/logout" class="btn btn-default btn-sm">Logout</a>
     </section>
 
-      <!-- LOCAL INFORMATION -->
-      <div class="col-sm-6">
-        <div class="well">
-          <h3><span class="fa fa-user"></span> Local</h3>
+    <!-- LOCAL INFORMATION -->
+    <div class="col-sm-6">
+      <div class="well">
+        <h3><span class="fa fa-user"></span> Local</h3>
 
-          <% if (user.local.email) { %>
-          <p>
-            <strong>id</strong>: <%= user._id %><br>
-            <strong>email</strong>: <%= user.local.email %><br>
-            <strong>password</strong>: <%= user.local.password %>
-          </p>
+        <% if (user.local.email) { %>
+        <p>
+          <strong>id</strong>: <%= user._id %><br>
+          <strong>email</strong>: <%= user.local.email %><br>
+          <strong>password</strong>: <%= user.local.password %>
+        </p>
 
-          <a href="/unlink/local" class="btn btn-default">Unlink</a>
-          <% } else { %>
-          <a href="/connect/local" class="btn btn-default">Connect Local</a>
-          <% } %>
+        <a href="/unlink/local" class="btn btn-default">Unlink</a>
+        <% } else { %>
+        <a href="/connect/local" class="btn btn-default">Connect Local</a>
+        <% } %>
 
-        </div>
       </div>
+    </div>
 
-        <h3>Movement Log</h3>
+    <!-- Add a workout -->
+    <% if (user.local.email) { %>
+    <form class="form" action="/messages" method="POST">
 
-      <!-- Add a workout -->
-      <% if (user.local.email) { %>
-      <form class="form" action="/messages" method="POST">
-        <input type="text" placeholder="Username"  value="<%= user.local.email %>" name="name">
-        <input type="text" placeholder="Movement Done" name="msg">
+      <section class="workoutType">
+        <legend>Select an area:</legend>
+
+        <input type="radio" id="legs" name="area" value="legs" checked>
+        <label for="legs">Legs</label>
+
+        <input type="radio" id="back" name="area" value="back">
+        <label for="back">Back</label>
+
+        <input type="radio" id="arms" name="area" value="arms">
+        <label for="arms">Arms</label>
+
+        <input type="radio" id="chest" name="area" value="chest">
+        <label for="chest">Chest</label>
+
+        <input type="radio" id="shoulders" name="area" value="shoulders">
+        <label for="shoulders">Shoulders</label>
+
+        <input type="radio" id="core" name="area" value="core">
+        <label for="core">Core</label>
+      </section>
+
+      <section class="workoutDetails">
+        <input type="text" placeholder="Username" value="<%= user.local.email %>" name="name">
+        <input type="text" placeholder="Exercise" name="msg">
+        <input type=" number" placeholder="Sets" name="msg">
+        <input type="text" placeholder="reps" name="msg">
         <button type="submit">Log</button>
-      </form>
+      </section>
+
+
+    </form>
     <% } %>
 
-  </div>
-
-      <!-- User Workout Logs -->
+  <!-- User Workout Logs -->
   <section class="workoutLogList">
     <ul class="messages">
+      <% for(var i=0; i<messages.length; i++)
+      {%>
+        if () {
+
+        }
+      <li class="message <%= messages[i].bookmarked ? 'blue' : '' %>">
+        <span><%= messages[i].name %></span>
+        <span><%= messages[i].msg %></span>
+        <span><%= messages[i].thumbUp %></span>
+        <span><i class="fa-solid fa-fire"></i></i></span>
+        <span><i class="fa-solid fa-bookmark"></i></i></span>
+        <span><i class="fa fa-trash" aria-hidden="true"></i></span>
+      </li>
+      <% } %>
+    </ul>
+
+    <ul class="legs">
       <% for(var i=0; i<messages.length; i++) {%>
       <li class="message <%= messages[i].bookmarked ? 'blue' : '' %>">
         <span><%= messages[i].name %></span>
@@ -73,9 +115,61 @@
       </li>
       <% } %>
     </ul>
+
+    <ul class="back">
+      <% for(var i=0; i<messages.length; i++) {%>
+      <li class="message <%= messages[i].bookmarked ? 'blue' : '' %>">
+        <span><%= messages[i].name %></span>
+        <span><%= messages[i].msg %></span>
+        <span><%= messages[i].thumbUp %></span>
+        <span><i class="fa-solid fa-fire"></i></i></span>
+        <span><i class="fa-solid fa-bookmark"></i></i></span>
+        <span><i class="fa fa-trash" aria-hidden="true"></i></span>
+      </li>
+      <% } %>
+    </ul>
+
+    <ul class="arms">
+      <% for(var i=0; i<messages.length; i++) {%>
+      <li class="message <%= messages[i].bookmarked ? 'blue' : '' %>">
+        <span><%= messages[i].name %></span>
+        <span><%= messages[i].msg %></span>
+        <span><%= messages[i].thumbUp %></span>
+        <span><i class="fa-solid fa-fire"></i></i></span>
+        <span><i class="fa-solid fa-bookmark"></i></i></span>
+        <span><i class="fa fa-trash" aria-hidden="true"></i></span>
+      </li>
+      <% } %>
+    </ul>
+
+    <ul class="chest">
+      <% for(var i=0; i<messages.length; i++) {%>
+      <li class="shoulders <%= messages[i].bookmarked ? 'blue' : '' %>">
+        <span><%= messages[i].name %></span>
+        <span><%= messages[i].msg %></span>
+        <span><%= messages[i].thumbUp %></span>
+        <span><i class="fa-solid fa-fire"></i></i></span>
+        <span><i class="fa-solid fa-bookmark"></i></i></span>
+        <span><i class="fa fa-trash" aria-hidden="true"></i></span>
+      </li>
+      <% } %>
+    </ul>
+
+    <ul class="core">
+      <% for(var i=0; i<messages.length; i++) {%>
+      <li class="message <%= messages[i].bookmarked ? 'blue' : '' %>">
+        <span><%= messages[i].name %></span>
+        <span><%= messages[i].msg %></span>
+        <span><%= messages[i].thumbUp %></span>
+        <span><i class="fa-solid fa-fire"></i></i></span>
+        <span><i class="fa-solid fa-bookmark"></i></i></span>
+        <span><i class="fa fa-trash" aria-hidden="true"></i></span>
+      </li>
+      <% } %>
+    </ul>
+
   </section>
 
-  <div class="col-sm-6">
 
 
     <script src="main.js"></script>

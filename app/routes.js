@@ -29,7 +29,12 @@ module.exports = function(app, passport, db) {
 
 
     app.post('/messages', (req, res) => {
-      db.collection('exercises').save({name: req.body.name, msg: req.body.msg, thumbUp: 0, bookmarked:false}, (err, result) => {
+      db.collection('exercises').save({
+        area: req.body.area,
+        msg: req.body.msg,
+        thumbUp: 0,
+        bookmarked:false
+      }, (err, result) => {
         if (err) return console.log(err)
         console.log('saved to database')
         res.redirect('/profile')
@@ -38,9 +43,11 @@ module.exports = function(app, passport, db) {
 
     app.put('/messages', (req, res) => {
       db.collection('exercises')
-      .findOneAndUpdate({name: req.body.name, msg: req.body.msg}, {
+      .findOneAndUpdate({
+        name: req.body.name,
+        msg: req.body.msg}, {
         $set: {
-          thumbUp:req.body.thumbUp + 1
+        thumbUp:req.body.thumbUp + 1
         }
       }, {
         sort: {_id: -1},
@@ -51,16 +58,18 @@ module.exports = function(app, passport, db) {
       })
     })
 
-    
+
 app.put('/bookmarks', (req, res) => {
   // update request
   db.collection('exercises')
-  .findOneAndUpdate({name: req.body.name, msg: req.body.msg}, { // find the name/message
+  .findOneAndUpdate({
+    name: req.body.name,
+    msg: req.body.msg}, { // find the name/message
     $set: { // changes this part of the object
-     bookmarked: true
+    bookmarked: true
     }
   }, {
-    sort: {_id: -1}, 
+    sort: {_id: -1},
     upsert: true
     // creates something for you
   }, (err, result) => {
@@ -70,7 +79,9 @@ app.put('/bookmarks', (req, res) => {
 })
 
     app.delete('/messages', (req, res) => {
-      db.collection('exercises').findOneAndDelete({name: req.body.name, msg: req.body.msg}, (err, result) => {
+      db.collection('exercises').findOneAndDelete({
+        name: req.body.name,
+        msg: req.body.msg}, (err, result) => {
         if (err) return res.send(500, err)
         res.send('Message deleted!')
       })
@@ -84,7 +95,8 @@ app.put('/bookmarks', (req, res) => {
         // LOGIN ===============================
         // show the login form
         app.get('/login', function(req, res) {
-            res.render('login.ejs', { message: req.flash('loginMessage') });
+            res.render('login.ejs', {
+              message: req.flash('loginMessage') });
         });
 
         // process the login form
@@ -97,7 +109,8 @@ app.put('/bookmarks', (req, res) => {
         // SIGNUP =================================
         // show the signup form
         app.get('/signup', function(req, res) {
-            res.render('signup.ejs', { message: req.flash('signupMessage') });
+            res.render('signup.ejs', {
+              message: req.flash('signupMessage') });
         });
 
         // process the signup form

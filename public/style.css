@@ -2,6 +2,11 @@ body {
   background: gray;
 }
 
+.fa-dumbbell {
+  font-size: 75px;
+  color: darkblue;
+}
+
 img {
   height: 200px;
 }
@@ -12,6 +17,8 @@ img {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  align-content: center;
+
   margin-bottom: 50px;
   padding-bottom: 15px;
   border-bottom: 4px double darkblue;
@@ -20,9 +27,10 @@ img {
 }
 
 h1 {
-  color: black;
+  color: white;
   display: flex;
-  flex-direction: column;
+  align-items: baseline;
+  padding: 3px;
 }
 
 h3 {
@@ -36,6 +44,8 @@ h3 {
 .btn-sm {
   border-radius: 7px;
   height: auto;
+  background: black;
+  color: white;
 }
 
 .blue {
@@ -137,4 +147,16 @@ legend {
 .areaOne, .areaTwo {
   display: flex;
   flex-direction: row;
+}
+
+.legs, .core, .back, .chest, .shoulders, .arms {
+  border-bottom: 3px solid darkblue;
+  padding: 15px;
+  margin: 10px;
+}
+
+li {
+  border-top: 2px solid darkblue;
+  /* border-bottom: 2px solid darkblue; */
+  margin: 3px;
 }

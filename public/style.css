@@ -1,8 +1,4 @@
 body {
-  /* word-wrap: break-word;
-  background-color: #15c5e9;
-  background-image: linear-gradient(0deg, rgba(21, 197, 233, 1) 0%, rgba(21, 15, 111, 1) 100%);
-  background-repeat: no-repeat; */
   background: gray;
 }
 
@@ -17,17 +13,14 @@ img {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 50px;
-  /* border-bottom: 3px double lightgray; */
-  border: 3px solid darkblue;
   padding-bottom: 15px;
+  border-bottom: 4px double darkblue;
+  border-top: 4px double darkblue;
+
 }
 
 h1 {
   color: black;
-  /* text-shadow: 0px 3px 0px #b2a98f,
-    0px 14px 10px rgba(0, 0, 0, 0.15),
-    0px 24px 2px rgba(0, 0, 0, 0.1),
-    0px 34px 30px rgba(0, 0, 0, 0.1); */
   display: flex;
   flex-direction: column;
 }
@@ -35,7 +28,7 @@ h1 {
 h3 {
   color: lightgray;
   margin-bottom: 20px;
-  text-align: center;
+  text-align: left;
   font-size: 30px;
 }
 
@@ -72,14 +65,14 @@ h3 {
 .form button {
   background-color: black;
   color: white;
-  width: 15%;
+    width: 40%;
   border-radius: 20px;
 }
 
 .form button:hover {
   background-color: white;
   color: black;
-  width: 15%;
+    width: 40%;
   border-radius: 20px;
 }
 
@@ -112,16 +105,36 @@ li {
   flex-direction: column;
 }
 
-.button {
-  width: 40%;
-}
 
 legend {
-  width: 70%;
+  width: 100%;
 }
 
 .workoutDetails {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   width: 20%;
+}
+
+.workoutType {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.formRadioButtons {
+  display: flex;
+  flex-direction: row;
+}
+
+/* Workout log area */
+
+.areaSorting {
+  display: flex;
+  flex-direction: column;
+}
+
+.areaOne, .areaTwo {
+  display: flex;
+  flex-direction: row;
 }

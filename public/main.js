@@ -34,15 +34,15 @@ Array.from(bookmark).forEach(function(element) {
         e.preventDefault()
         const name = this.parentNode.parentNode.childNodes[1].innerText
         const msg = this.parentNode.parentNode.childNodes[3].innerText
-        const bookmarks = e.target.classList.contains('blue') ? true : false
-        
+        const bookmarked = e.target.classList.contains('blue') ? true : false
+
         fetch('bookmarks', {
           method: 'put',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({
             'name': name,
             'msg': msg,
-            'bookmarked': bookmarks,
+            'bookmarked': bookmarked
             // calling on the same property with a different value
           })
         })

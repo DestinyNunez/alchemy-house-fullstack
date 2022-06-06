@@ -16,160 +16,210 @@
 </head>
 
 <body>
-  <!-- <div class="container"> -->
+  <div class="container">
 
-    <!-- <div class="page-header text-center"> -->
+    <div class="page-header text-center">
 
 
-    <section class="main">
-      <h1> Alchemy House </h1>
-      <a href="/logout" class="btn btn-default btn-sm">Logout</a>
-    </section>
+      <section class="main">
+        <i class="fa-solid fa-dumbbell"></i>
+        <h1> Alchemy House </h1>
+        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+      </section>
 
-    <!-- LOCAL INFORMATION -->
-    <div class="col-sm-6">
-      <div class="well">
-        <h3><span class="fa fa-user"></span> Local</h3>
+      <!-- LOCAL INFORMATION -->
+      <div class="col-sm-6">
+        <div class="well">
+          <h3><span class="fa fa-user"></span> Local</h3>
 
-        <% if (user.local.email) { %>
-        <p>
-          <strong>id</strong>: <%= user._id %><br>
-          <strong>email</strong>: <%= user.local.email %><br>
-          <strong>password</strong>: <%= user.local.password %>
-        </p>
+          <% if (user.local.email) { %>
+          <p>
+            <strong>id</strong>: <%= user._id %><br>
+            <strong>email</strong>: <%= user.local.email %><br>
+            <strong>password</strong>: <%= user.local.password %>
+          </p>
 
-        <a href="/unlink/local" class="btn btn-default">Unlink</a>
-        <% } else { %>
-        <a href="/connect/local" class="btn btn-default">Connect Local</a>
-        <% } %>
+          <a href="/unlink/local" class="btn btn-default">Unlink</a>
+          <% } else { %>
+          <a href="/connect/local" class="btn btn-default">Connect Local</a>
+          <% } %>
 
+        </div>
       </div>
-    </div>
 
-    <!-- Add a workout -->
-    <% if (user.local.email) { %>
-    <form class="form" action="/messages" method="POST">
+      <!-- Add a workout -->
+      <% if (user.local.email) { %>
+      <form class="form" action="/messages" method="POST">
 
-      <section class="workoutType">
-        <legend>Select an area:</legend>
+        <section class="workoutType">
+          <legend>Select an area:</legend>
+            <legend>
+          <section class="radioSelection">
+            <section class="formRadioButtons">
+              <input type="radio" id="legs" name="area" value="legs" checked>
+              <label for="legs">Legs</label>
+            </section>
 
-        <input type="radio" id="legs" name="area" value="legs" checked>
-        <label for="legs">Legs</label>
+            <section class="formRadioButtons">
+              <input type="radio" id="back" name="area" value="back">
+              <label for="back">Back</label>
+            </section>
 
-        <input type="radio" id="back" name="area" value="back">
-        <label for="back">Back</label>
+            <section class="formRadioButtons">
+              <input type="radio" id="arms" name="area" value="arms">
+              <label for="arms">Arms</label>
+            </section>
 
-        <input type="radio" id="arms" name="area" value="arms">
-        <label for="arms">Arms</label>
+            <section class="formRadioButtons">
+              <input type="radio" id="chest" name="area" value="chest">
+              <label for="chest">Chest</label>
+            </section>
 
-        <input type="radio" id="chest" name="area" value="chest">
-        <label for="chest">Chest</label>
-
-        <input type="radio" id="shoulders" name="area" value="shoulders">
-        <label for="shoulders">Shoulders</label>
-
-        <input type="radio" id="core" name="area" value="core">
-        <label for="core">Core</label>
-      </section>
-
-      <section class="workoutDetails">
-        <input type="text" placeholder="Username" value="<%= user.local.email %>" name="name">
-        <input type="text" placeholder="Exercise" name="msg">
-        <input type=" number" placeholder="Sets" name="msg">
-        <input type="text" placeholder="reps" name="msg">
-        <button type="submit">Log</button>
-      </section>
+            <section class="formRadioButtons">
+              <input type="radio" id="shoulders" name="area" value="shoulders">
+              <label for="shoulders">Shoulders</label>
+            </section>
+            <section class="formRadioButtons">
+              <input type="radio" id="core" name="area" value="core">
+              <label for="core">Core</label>
+            </section>
+          </legend>
+          </section>
 
 
-    </form>
+        </section>
+
+        <section class="workoutDetails">
+          <input type="text" placeholder="Exercise" name="msg">
+          <input type="number" min="1" placeholder="Sets" name="msg">
+          <input type="number" min="1" placeholder="Reps" name="msg">
+          <button class="log" type="submit">Log</button>
+
+        </section>
+
+      </form>
+      <% } %>
+
+
+
+<section class="areaSorting">
+<section class="areaOne">
+
+  <!-- Legs section -->
+  <ul class="legs">
+    <h3>Leg Workouts</h3>
+    <% for(var i=0; i<messages.length; i++) {%>
+    <% if (messages[i].area === "legs")  { %>
+    <li class="message <%= messages[i].bookmarked ? 'blue' : '' %>">
+      <h5><%= user.local.email %></h5>
+      <h5>Exercise: <%= messages[i].msg[0] %></h5>
+      <h5>Sets: <%= messages[i].msg[1] %></h5>
+      <h5>Reps: <%= messages[i].msg[2] %></h5>
+      <span>Likes: <%= messages[i].thumbUp %></span>
+      <span><i class="fa-solid fa-fire"></i></i></span>
+      <span><i class="fa-solid fa-bookmark"></i></i></span>
+      <span><i class="fa fa-trash" aria-hidden="true"></i></span>
+    </li>
     <% } %>
+    <% } %>
+  </ul>
 
-  <!-- User Workout Logs -->
-  <section class="workoutLogList">
-    <ul class="messages">
-      <% for(var i=0; i<messages.length; i++)
-      {%>
-        if () {
+  <ul class="back">
+    <h3>Back Workouts</h3>
 
-        }
-      <li class="message <%= messages[i].bookmarked ? 'blue' : '' %>">
-        <span><%= messages[i].name %></span>
-        <span><%= messages[i].msg %></span>
-        <span><%= messages[i].thumbUp %></span>
-        <span><i class="fa-solid fa-fire"></i></i></span>
-        <span><i class="fa-solid fa-bookmark"></i></i></span>
-        <span><i class="fa fa-trash" aria-hidden="true"></i></span>
-      </li>
-      <% } %>
-    </ul>
+    <% for(var i=0; i<messages.length; i++) {%>
+    <% if (messages[i].area === "back")  { %>
+    <li class="message <%= messages[i].bookmarked ? 'blue' : '' %>">
+      <h5><%= messages[i].name %></h5>
+      <h5>Exercise: <%= messages[i].msg[0] %></h5>
+      <h5>Sets: <%= messages[i].msg[1] %></h5>
+      <h5>Reps: <%= messages[i].msg[2] %></h5>
+      <span>Likes: <%= messages[i].thumbUp %></span>
+      <span><i class="fa-solid fa-fire"></i></i></span>
+      <span><i class="fa-solid fa-bookmark"></i></i></span>
+      <span><i class="fa fa-trash" aria-hidden="true"></i></span>
+    </li>
+    <% } %>
+    <% } %>
+  </ul>
 
-    <ul class="legs">
-      <% for(var i=0; i<messages.length; i++) {%>
-      <li class="message <%= messages[i].bookmarked ? 'blue' : '' %>">
-        <span><%= messages[i].name %></span>
-        <span><%= messages[i].msg %></span>
-        <span><%= messages[i].thumbUp %></span>
-        <span><i class="fa-solid fa-fire"></i></i></span>
-        <span><i class="fa-solid fa-bookmark"></i></i></span>
-        <span><i class="fa fa-trash" aria-hidden="true"></i></span>
-      </li>
-      <% } %>
-    </ul>
+  <ul class="arms">
+    <h3>Arm Workouts</h3>
+    <% for(var i=0; i<messages.length; i++) {%>
+    <% if (messages[i].area === "arms")  { %>
+    <li class="message <%= messages[i].bookmarked ? 'blue' : '' %>">
+      <h5><%= messages[i].name %></h5>
+      <h5>Exercise: <%= messages[i].msg[0] %></h5>
+      <h5>Sets: <%= messages[i].msg[1] %></h5>
+      <h5>Reps: <%= messages[i].msg[2] %></h5>
+      <span>Likes: <%= messages[i].thumbUp %></span>
+      <span><i class="fa-solid fa-fire"></i></i></span>
+      <span><i class="fa-solid fa-bookmark"></i></i></span>
+      <span><i class="fa fa-trash" aria-hidden="true"></i></span>
+    </li>
+    <% } %>
+    <% } %>
+  </ul>
+</section>
 
-    <ul class="back">
-      <% for(var i=0; i<messages.length; i++) {%>
-      <li class="message <%= messages[i].bookmarked ? 'blue' : '' %>">
-        <span><%= messages[i].name %></span>
-        <span><%= messages[i].msg %></span>
-        <span><%= messages[i].thumbUp %></span>
-        <span><i class="fa-solid fa-fire"></i></i></span>
-        <span><i class="fa-solid fa-bookmark"></i></i></span>
-        <span><i class="fa fa-trash" aria-hidden="true"></i></span>
-      </li>
-      <% } %>
-    </ul>
+<section class="areaTwo">
+  <ul class="chest">
+    <h3>Chest Workouts</h3>
+    <% for(var i=0; i<messages.length; i++) {%>
+    <% if (messages[i].area === "chest")  { %>
+    <li class="message <%= messages[i].bookmarked ? 'blue' : '' %>">
+      <h5><%= messages[i].name %></h5>
+      <h5>Exercise: <%= messages[i].msg[0] %></h5>
+      <h5>Sets: <%= messages[i].msg[1] %></h5>
+      <h5>Reps: <%= messages[i].msg[2] %></h5>
+      <span>Likes: <%= messages[i].thumbUp %></span>
+      <span><i class="fa-solid fa-fire"></i></i></span>
+      <span><i class="fa-solid fa-bookmark"></i></i></span>
+      <span><i class="fa fa-trash" aria-hidden="true"></i></span>
+    </li>
+    <% } %>
+    <% } %>
+  </ul>
 
-    <ul class="arms">
-      <% for(var i=0; i<messages.length; i++) {%>
-      <li class="message <%= messages[i].bookmarked ? 'blue' : '' %>">
-        <span><%= messages[i].name %></span>
-        <span><%= messages[i].msg %></span>
-        <span><%= messages[i].thumbUp %></span>
-        <span><i class="fa-solid fa-fire"></i></i></span>
-        <span><i class="fa-solid fa-bookmark"></i></i></span>
-        <span><i class="fa fa-trash" aria-hidden="true"></i></span>
-      </li>
-      <% } %>
-    </ul>
+  <ul class="shoulders">
+    <h3>Shoulder Workouts</h3>
+    <% for(var i=0; i<messages.length; i++) {%>
+    <% if (messages[i].area === "shoulders")  { %>
+    <li class="message <%= messages[i].bookmarked ? 'blue' : '' %>">
+      <h5><%= messages[i].name %></h5>
+      <h5>Exercise: <%= messages[i].msg[0] %></h5>
+      <h5>Sets: <%= messages[i].msg[1] %></h5>
+      <h5>Reps: <%= messages[i].msg[2] %></h5>
+      <span>Likes: <%= messages[i].thumbUp %></span>
+      <span><i class="fa-solid fa-fire"></i></i></span>
+      <span><i class="fa-solid fa-bookmark"></i></i></span>
+      <span><i class="fa fa-trash" aria-hidden="true"></i></span>
+    </li>
+    <% } %>
+    <% } %>
+  </ul>
 
-    <ul class="chest">
-      <% for(var i=0; i<messages.length; i++) {%>
-      <li class="shoulders <%= messages[i].bookmarked ? 'blue' : '' %>">
-        <span><%= messages[i].name %></span>
-        <span><%= messages[i].msg %></span>
-        <span><%= messages[i].thumbUp %></span>
-        <span><i class="fa-solid fa-fire"></i></i></span>
-        <span><i class="fa-solid fa-bookmark"></i></i></span>
-        <span><i class="fa fa-trash" aria-hidden="true"></i></span>
-      </li>
-      <% } %>
-    </ul>
+  <ul class="core">
+    <h3>Core Workouts</h3>
+    <% for(var i=0; i<messages.length; i++) {%>
+    <% if (messages[i].area === "core")  { %>
+    <li class="message <%= messages[i].bookmarked ? 'blue' : '' %>">
+      <h5><%= messages[i].name %></h5>
+      <h5>Exercise: <%= messages[i].msg[0] %></h5>
+      <h5>Sets: <%= messages[i].msg[1] %></h5>
+      <h5>Reps: <%= messages[i].msg[2] %></h5>
+      <span>Likes: <%= messages[i].thumbUp %></span>
+      <span><i class="fa-solid fa-fire"></i></i></span>
+      <span><i class="fa-solid fa-bookmark"></i></i></span>
+      <span><i class="fa fa-trash" aria-hidden="true"></i></span>
+    </li>
+    <% } %>
+    <% } %>
+  </ul>
+</section>
+</section>
 
-    <ul class="core">
-      <% for(var i=0; i<messages.length; i++) {%>
-      <li class="message <%= messages[i].bookmarked ? 'blue' : '' %>">
-        <span><%= messages[i].name %></span>
-        <span><%= messages[i].msg %></span>
-        <span><%= messages[i].thumbUp %></span>
-        <span><i class="fa-solid fa-fire"></i></i></span>
-        <span><i class="fa-solid fa-bookmark"></i></i></span>
-        <span><i class="fa fa-trash" aria-hidden="true"></i></span>
-      </li>
-      <% } %>
-    </ul>
-
-  </section>
-
+    </div>
 
 
     <script src="main.js"></script>

@@ -1,6 +1,8 @@
 # Alchemy House Movement Tracker
 
-![Screen Shot 2022-05-30 at 10 28 06 PM](https://user-images.githubusercontent.com/88361309/171080804-d4275af8-e303-4510-abba-1ff7cbae4f17.png)
+<img width="1280" alt="Screen Shot 2022-06-06 at 3 27 33 AM" src="https://user-images.githubusercontent.com/88361309/172115741-782a2720-3af5-417e-b7bb-451a019a6bcd.png">
+
+<img width="1280" alt="Screen Shot 2022-06-06 at 3 28 32 AM" src="https://user-images.githubusercontent.com/88361309/172115762-201a63f1-df0e-463a-9cfe-f50f842dc074.png">
 
 
 
